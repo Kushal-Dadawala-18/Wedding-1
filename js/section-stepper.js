@@ -27,6 +27,7 @@
         }
 
         activeIndex = index;
+        document.body.classList.toggle('falling-flowers-active', activeIndex > 0);
         pages.forEach(function (page, pageIndex) {
             var isActive = pageIndex === activeIndex;
             page.classList.toggle('is-active', isActive);

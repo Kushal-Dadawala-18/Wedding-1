@@ -1,32 +1,3 @@
-/* Event-specific spacing; retain the existing section layout and typography. */
-.events .events-intro {
-    max-width: 760px;
-    margin: -8px auto 28px;
-    padding-bottom: 0;
-    text-align: center;
-}
-
-.events .event-item + .event-item {
-    margin-top: 24px;
-}
-
-.events .event-date {
-    margin: 0 0 4px;
-    padding-bottom: 0;
-    line-height: 22px;
-}
-
-.events .event-item h5 {
-    margin: 0 0 8px;
-}
-
-.events .event-description {
-    margin: 0;
-    padding-bottom: 0;
-    font-size: 14px;
-    line-height: 24px;
-}
-
 @media screen and (max-width: 1200px) {
     header {
         width: 90%;
@@ -245,24 +216,6 @@
         margin-top: 0;
     }
 
-    .events .leftcol {
-        padding: 0 15px;
-        margin-bottom: 15px;
-        border-right: none;
-    }
-
-    .events .rightcol {
-        padding: 0 20px;
-    }
-
-    .events .events-intro {
-        margin-bottom: 22px;
-    }
-
-    .events .event-item + .event-item {
-        margin-top: 20px;
-    }
-    
     #eng-pics .img-wrap {
         border-radius: 0;
     }

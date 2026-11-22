@@ -48,10 +48,40 @@ $(document).ready(function () {
         offset: '75%'
     });
 
-    /***************** Initiate Flexslider ******************/
-    $('.flexslider').flexslider({
-        animation: "slide"
+    /***************** Initiate wedding photo carousel ******************/
+    var $photoCarousel = $('#eng-pics .photo-carousel');
+    var photoSlideshowEnabled = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function initializePhotoCarousel() {
+        if (!$photoCarousel.length || $photoCarousel.data('flexslider')) {
+            return;
+        }
+
+        $photoCarousel.flexslider({
+            animation: 'slide',
+            animationSpeed: 700,
+            controlNav: true,
+            directionNav: true,
+            pauseOnHover: true,
+            slideshow: photoSlideshowEnabled,
+            slideshowSpeed: 4500
+        });
+    }
+
+    document.addEventListener('wedding:pagechange', function (event) {
+        if (event.detail.pageId === 'eng-pics') {
+            initializePhotoCarousel();
+            if (photoSlideshowEnabled && $photoCarousel.data('flexslider')) {
+                $photoCarousel.flexslider('play');
+            }
+        } else if ($photoCarousel.data('flexslider')) {
+            $photoCarousel.flexslider('pause');
+        }
     });
+
+    if ($('#eng-pics').hasClass('is-active')) {
+        initializePhotoCarousel();
+    }
 
     /***************** Initiate Fancybox ******************/
 
@@ -83,6 +113,195 @@ $(document).ready(function () {
 
     });
 
+    /***************** Wedding event carousel ******************/
+
+    var petalLayer = document.querySelector('.falling-petals');
+    if (petalLayer) {
+        var petalColors = ['#cf7886', '#df8b8b', '#d8a53d', '#e1ba76'];
+        for (var petalIndex = 0; petalIndex < 16; petalIndex += 1) {
+            var petal = document.createElement('span');
+            var fallDuration = 8 + Math.random() * 9;
+            var swayA = (Math.random() * 100 - 50).toFixed(0);
+            var swayB = (Math.random() * 100 - 50).toFixed(0);
+
+            petal.className = 'falling-petal';
+            petal.style.setProperty('--petal-color', petalColors[Math.floor(Math.random() * petalColors.length)]);
+            petal.style.setProperty('--petal-left', (Math.random() * 100).toFixed(2) + 'vw');
+            petal.style.setProperty('--petal-width', (8 + Math.random() * 7).toFixed(0) + 'px');
+            petal.style.setProperty('--petal-height', (12 + Math.random() * 10).toFixed(0) + 'px');
+            petal.style.setProperty('--petal-opacity', (0.45 + Math.random() * 0.4).toFixed(2));
+            petal.style.setProperty('--fall-duration', fallDuration.toFixed(2) + 's');
+            petal.style.setProperty('--fall-delay', (-Math.random() * fallDuration).toFixed(2) + 's');
+            petal.style.setProperty('--sway-a', swayA + 'px');
+            petal.style.setProperty('--sway-b', swayB + 'px');
+            petalLayer.appendChild(petal);
+        }
+    }
+
+    var $eventChoices = $('.event-choice');
+    var $eventPanels = $('.event-panel');
+    var $eventDots = $('.event-dot');
+    var $eventCount = $('.event-count');
+    var activeEventIndex = 0;
+
+    if ($eventChoices.length && $eventPanels.length) {
+        function showEvent(index, focusChoice) {
+            activeEventIndex = (index + $eventChoices.length) % $eventChoices.length;
+
+            $eventChoices.each(function (choiceIndex) {
+                var isActive = choiceIndex === activeEventIndex;
+                $(this)
+                    .toggleClass('is-active', isActive)
+                    .attr('aria-selected', isActive ? 'true' : 'false')
+                    .attr('tabindex', isActive ? '0' : '-1');
+            });
+
+            $eventPanels.each(function (panelIndex) {
+                var isActive = panelIndex === activeEventIndex;
+                $(this).toggleClass('is-active', isActive).prop('hidden', !isActive);
+            });
+
+            $eventDots.each(function (dotIndex) {
+                var isActive = dotIndex === activeEventIndex;
+                $(this)
+                    .toggleClass('is-active', isActive)
+                    .attr('aria-pressed', isActive ? 'true' : 'false');
+            });
+
+            if ($eventCount.length) {
+                var currentNumber = activeEventIndex + 1;
+                var totalNumber = $eventChoices.length;
+                $eventCount.text(
+                    (currentNumber < 10 ? '0' : '') + currentNumber + ' / ' +
+                    (totalNumber < 10 ? '0' : '') + totalNumber
+                );
+            }
+
+            if (focusChoice) {
+                $eventChoices.eq(activeEventIndex).trigger('focus');
+            }
+        }
+
+        $eventChoices.on('click', function () {
+            showEvent($eventChoices.index(this), false);
+        });
+
+        $eventDots.on('click', function () {
+            showEvent($eventDots.index(this), false);
+        });
+
+        $('.event-previous').on('click', function () {
+            showEvent(activeEventIndex - 1, false);
+        });
+
+        $('.event-next').on('click', function () {
+            showEvent(activeEventIndex + 1, false);
+        });
+
+        $eventChoices.on('keydown', function (event) {
+            if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+                event.preventDefault();
+                event.stopPropagation();
+                showEvent(activeEventIndex + 1, true);
+            } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+                event.preventDefault();
+                event.stopPropagation();
+                showEvent(activeEventIndex - 1, true);
+            } else if (event.key === 'Home') {
+                event.preventDefault();
+                event.stopPropagation();
+                showEvent(0, true);
+            } else if (event.key === 'End') {
+                event.preventDefault();
+                event.stopPropagation();
+                showEvent($eventChoices.length - 1, true);
+            }
+        });
+
+        var eventTouchStartX = null;
+        $('.event-detail')
+            .on('touchstart', function (event) {
+                var touch = event.originalEvent.touches[0];
+                eventTouchStartX = touch.clientX;
+            })
+            .on('touchend', function (event) {
+                if (eventTouchStartX === null) {
+                    return;
+                }
+
+                var touch = event.originalEvent.changedTouches[0];
+                var swipeDistance = touch.clientX - eventTouchStartX;
+                eventTouchStartX = null;
+
+                if (Math.abs(swipeDistance) >= 48) {
+                    showEvent(activeEventIndex + (swipeDistance < 0 ? 1 : -1), false);
+                }
+            });
+
+        showEvent(0, false);
+    }
+
+    /***************** Wedding music controls ******************/
+
+    var weddingAudio = document.getElementById('wedding-audio');
+    var musicMute = $('#music-mute');
+    var musicStatus = $('#music-status');
+
+    if (weddingAudio && musicMute.length) {
+        function startWeddingMusic() {
+            if (!weddingAudio.paused) {
+                return;
+            }
+
+            var playback = weddingAudio.play();
+            if (playback && typeof playback.catch === 'function') {
+                playback.catch(function (error) {
+                    if (error.name === 'NotAllowedError') {
+                        musicStatus.text('Interact with the page to start the wedding music.');
+                        return;
+                    }
+
+                    musicStatus.text('Unable to play the wedding song.');
+                    console.error('Wedding music playback failed.', error);
+                });
+            }
+        }
+
+        function startMusicOnInteraction() {
+            document.removeEventListener('pointerdown', startMusicOnInteraction, true);
+            document.removeEventListener('touchstart', startMusicOnInteraction, true);
+            document.removeEventListener('keydown', startMusicOnInteraction, true);
+            startWeddingMusic();
+        }
+
+        musicMute.on('click', function () {
+            weddingAudio.muted = !weddingAudio.muted;
+            var isMuted = weddingAudio.muted;
+            musicMute
+                .attr('aria-label', isMuted ? 'Unmute wedding music' : 'Mute wedding music')
+                .attr('aria-pressed', isMuted ? 'true' : 'false')
+                .find('i')
+                .toggleClass('fa-volume-up', !isMuted)
+                .toggleClass('fa-volume-off', isMuted);
+            musicMute.find('span').text(isMuted ? 'Unmute' : 'Mute');
+            musicStatus.text(isMuted ? 'Wedding music muted.' : 'Wedding music unmuted.');
+        });
+
+        $(weddingAudio).on('play', function () {
+            musicStatus.text('Wedding music playing.');
+        });
+
+        $(weddingAudio).on('error', function () {
+            musicStatus.text('The wedding song could not be loaded.');
+            console.error('Wedding music failed to load.', weddingAudio.error);
+        });
+
+        document.addEventListener('pointerdown', startMusicOnInteraction, true);
+        document.addEventListener('touchstart', startMusicOnInteraction, true);
+        document.addEventListener('keydown', startMusicOnInteraction, true);
+        startWeddingMusic();
+    }
+
     /***************** Header BG Scroll ******************/
 
     $(function () {
@@ -93,25 +312,25 @@ $(document).ready(function () {
                 $('section.navigation').addClass('fixed');
                 $('header').css({
                     "border-bottom": "none",
-                    "padding": "35px 0"
+                    "padding": "14px 0"
                 });
                 $('header .member-actions').css({
-                    "top": "26px",
+                    "top": "22px",
                 });
                 $('header .navicon').css({
-                    "top": "34px",
+                    "top": "21px",
                 });
             } else {
                 $('section.navigation').removeClass('fixed');
                 $('header').css({
                     "border-bottom": "solid 1px rgba(255, 255, 255, 0.2)",
-                    "padding": "50px 0"
+                    "padding": "14px 0"
                 });
                 $('header .member-actions').css({
-                    "top": "41px",
+                    "top": "22px",
                 });
                 $('header .navicon').css({
-                    "top": "48px",
+                    "top": "21px",
                 });
             }
         });
@@ -160,10 +379,6 @@ $(document).ready(function () {
         share_bar[i].innerHTML = html;
         share_bar[i].style.display = 'inline-block';
     }
-
-    /********************** Embed youtube video *********************/
-    $('.player').YTPlayer();
-
 
     /********************** Toggle Map Content **********************/
     $('#btn-show-map').click(function () {

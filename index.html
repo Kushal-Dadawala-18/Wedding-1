@@ -56,7 +56,7 @@
     <link rel="stylesheet" href="css/flexslider.css">
     <link rel="stylesheet" href="css/styles.min.css">
     <link rel="stylesheet" href="css/queries.css">
-    <link rel="stylesheet" href="css/wedding-editorial.css?v=15">
+    <link rel="stylesheet" href="css/wedding-editorial.css?v=21">
     <link rel="stylesheet" href="node_modules/animate.css/animate.min.css" onerror="loadCssFromCDN('animate.css')">
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" onerror="loadCssFromCDN('font-awesome.css')">
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
@@ -73,11 +73,10 @@
             <div class="header-nav">
                 <nav>
                     <ul class="primary-nav">
-                        <li><a href="#intro">Our POV</a></li>
+                        <li><a href="#intro">How Our Story Began</a></li>
                         <li><a href="#events">Events</a></li>
                         <li><a href="#instagram">Instagram</a></li>
                         <li><a href="#eng-pics">Photos</a></li>
-                        <li class="hidden-sm hidden-xs"><a href="#video-bg">Glimpse of the city</a></li>
                     </ul>
                     <ul class="member-actions">
                         <li><a href="#map" class="login">Venue</a></li>
@@ -94,14 +93,13 @@
 <main id="wedding-pages">
 <section class="hero wedding-page is-active" id="welcome" data-page-label="Welcome">
     <img class="hero-photo" src="img/hero-harsh-priyanshi.png" alt="" aria-hidden="true">
+    <div class="hero-overlay" aria-hidden="true"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="hero-content text-center">
-                    <!--<h1>Harsh and Priyanshi</h1>-->
-                    <img src="img/logo-harsh-priyanshi.svg" alt="Harsh and Priyanshi">
-                    <!--<p class="intro">Harsh & Priyanshi are getting married!</p>-->
-                    <!--<a href="#" class="btn btn-fill btn-large btn-margin-right">Scroll Down</a> -->
+                    <h1>Harsh &amp; Priyanshi</h1>
+                    <p>Harsh &amp; Priyanshi are getting married!</p>
                 </div>
             </div>
         </div>
@@ -118,19 +116,31 @@
                     <p>As Harsh and Priyanshi begin this beautiful new chapter of their lives, we, as a family, shower them with all our love and blessings. May your journey together be filled with endless love, happiness, understanding, and laughter. May you always stand by each other, grow together, and create a lifetime of beautiful memories.</p>
                     <p>Wishing you both a marriage filled with joy, prosperity, and togetherness. May God bless you both abundantly!</p>
                     <p class="family-blessing-signoff">With lots of love and blessings</p>
-                    <img class="family-blessing-ornament" src="img/floral-line.svg" alt="" aria-hidden="true">
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="intro" class="wedding-page" data-page-label="Our POV">
+<section id="intro" class="wedding-page" data-page-label="How Our Story Began">
     <div class="container">
         <div class="row our-pov-row">
             <div class="col-sm-6 our-pov-copy">
-                <h3 class="header">Our POV</h3>
-                <div class="our-pov-text-space" aria-hidden="true"></div>
+                <h3 class="header">How Our Story Began</h3>
+                <div class="our-pov-story">
+                    <p>Every Love story has a beginning, and ours started with a simple conversation. What began as
+                        messages and getting to know each other soon turned into something we both looked forward to.</p>
+                    <p>Even with me being in Germany, the distance didn't stop us. Between different time zones, long
+                        chats, a few laughs, and the occasional "Are you still awake?", we slowly started becoming a
+                        part of each other's everyday lives.</p>
+                    <p>Eventually, it was time to take things beyond the screen! Our families came together in Surat,
+                        and we finally met in person. What followed were a few lovely dates, more conversations, plenty
+                        of smiles, and the joy of discovering just how much we enjoyed each other's company.</p>
+                    <p>Somewhere along the way, those initial conversations turned into something much more meaningful.
+                        Turns out, all those messages were leading somewhere pretty special!</p>
+                    <p>And now, here we are, ready to turn those first conversations into a lifetime of memories.</p>
+                    <p class="our-pov-ending">Who knew one little chat could lead to forever?</p>
+                </div>
             </div>
             <div class="col-sm-6 our-pov-photo">
                 <img src="img/our-pov-photo.png" alt="Harsh and Priyanshi together by the water">
@@ -149,47 +159,77 @@
                     greatest gift.</p>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6 col-sm-12 col-xs-12 leftcol">
-                <div class="wp3 event-item">
-                    <img class="event-photo" src="img/events/mehendi.png" alt="Mehendi designs on hands" loading="lazy">
-                    <div class="event-content">
-                        <p class="event-date"><strong>22nd January 2027</strong></p>
-                        <h5>Mehendi <span class="time">4 PM onwards</span></h5>
-                        <p class="event-description">Let the celebrations begin with colours, laughter and a little
-                            mehendi magic! Join us for an afternoon filled with beautiful traditions, joyful moments and
-                            endless smiles as we kick off Harsh and Priyanshi's wedding celebrations.</p>
-                    </div>
-                </div>
-                <div class="wp5 event-item">
-                    <img class="event-photo" src="img/events/sangeet.png" alt="A couple dancing together" loading="lazy">
-                    <div class="event-content">
-                        <p class="event-date"><strong>23rd January 2027</strong></p>
-                        <h5>Sangeet <span class="time">6:30 PM onwards</span></h5>
-                        <p class="event-description">An evening of music, dance and unforgettable memories awaits! Get
-                            ready to celebrate love with lively performances, cheerful moments and a dance floor full of
-                            energy. Let's make this night one to remember!</p>
-                    </div>
-                </div>
+        <div class="event-showcase">
+            <div class="event-choices" role="tablist" aria-label="Choose a wedding event">
+                <button class="event-choice is-active" id="event-choice-1" type="button" role="tab"
+                        aria-selected="true" aria-controls="event-panel-1" tabindex="0">
+                    <span class="event-choice-number">01</span>
+                    <span class="event-choice-copy">
+                        <span class="event-choice-title">Mehendi</span>
+                        <span class="event-choice-meta">22nd January 2027 <span>4 PM onwards</span></span>
+                    </span>
+                </button>
+                <button class="event-choice" id="event-choice-2" type="button" role="tab"
+                        aria-selected="false" aria-controls="event-panel-2" tabindex="-1">
+                    <span class="event-choice-number">02</span>
+                    <span class="event-choice-copy">
+                        <span class="event-choice-title">Sangeet</span>
+                        <span class="event-choice-meta">23rd January 2027 <span>6:30 PM onwards</span></span>
+                    </span>
+                </button>
+                <button class="event-choice" id="event-choice-3" type="button" role="tab"
+                        aria-selected="false" aria-controls="event-panel-3" tabindex="-1">
+                    <span class="event-choice-number">03</span>
+                    <span class="event-choice-copy">
+                        <span class="event-choice-title">Grah Shanti</span>
+                        <span class="event-choice-meta">24th January 2027 <span>9 AM onwards</span></span>
+                    </span>
+                </button>
             </div>
-            <div class="col-md-6 col-sm-12 col-xs-12 rightcol">
-                <div class="wp4 event-item">
-                    <img class="event-photo" src="img/events/grah-shanti.png" alt="Lord Ganesha beneath a floral arch" loading="lazy">
-                    <div class="event-content">
-                        <p class="event-date"><strong>24th January 2027</strong></p>
-                        <h5>Grah Shanti <span class="time">9 AM onwards</span></h5>
-                        <p class="event-description">A beautiful beginning to a lifetime of togetherness. Join us as we
-                            seek blessings, embrace cherished traditions and pray for happiness, harmony and prosperity in
-                            Harsh and Priyanshi's new journey together.</p>
+            <div class="event-detail">
+                <article class="event-panel is-active" id="event-panel-1" role="tabpanel"
+                         aria-labelledby="event-choice-1" tabindex="0">
+                    <h4>Mehendi</h4>
+                    <p class="event-panel-date">22nd January 2027 <span>4 PM onwards</span></p>
+                    <p class="event-description">Let the celebrations begin with colours, laughter and a little
+                        mehendi magic! Join us for an afternoon filled with beautiful traditions, joyful moments and
+                        endless smiles as we kick off Harsh and Priyanshi's wedding celebrations.</p>
+                </article>
+                <article class="event-panel" id="event-panel-2" role="tabpanel"
+                         aria-labelledby="event-choice-2" tabindex="0" hidden>
+                    <h4>Sangeet</h4>
+                    <p class="event-panel-date">23rd January 2027 <span>6:30 PM onwards</span></p>
+                    <p class="event-description">An evening of music, dance and unforgettable memories awaits! Get
+                        ready to celebrate love with lively performances, cheerful moments and a dance floor full of
+                        energy. Let's make this night one to remember!</p>
+                </article>
+                <article class="event-panel" id="event-panel-3" role="tabpanel"
+                         aria-labelledby="event-choice-3" tabindex="0" hidden>
+                    <h4>Grah Shanti</h4>
+                    <p class="event-panel-date">24th January 2027 <span>9 AM onwards</span></p>
+                    <p class="event-description">A beautiful beginning to a lifetime of togetherness. Join us as we
+                        seek blessings, embrace cherished traditions and pray for happiness, harmony and prosperity in
+                        Harsh and Priyanshi's new journey together.</p>
+                </article>
+                <div class="event-controls" role="group" aria-label="Event navigation">
+                    <button class="event-control event-previous" type="button" aria-label="Previous event">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    </button>
+                    <div class="event-pagination">
+                        <span class="event-count" aria-live="polite">01 / 03</span>
+                        <div class="event-dots" role="group" aria-label="Choose an event">
+                            <button class="event-dot is-active" type="button" aria-label="Show event 1"
+                                    aria-controls="event-panel-1" aria-pressed="true"></button>
+                            <button class="event-dot" type="button" aria-label="Show event 2"
+                                    aria-controls="event-panel-2" aria-pressed="false"></button>
+                            <button class="event-dot" type="button" aria-label="Show event 3"
+                                    aria-controls="event-panel-3" aria-pressed="false"></button>
+                        </div>
                     </div>
+                    <button class="event-control event-next" type="button" aria-label="Next event">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </button>
                 </div>
-            </div>
-        </div>
-        <div class="row section-padding">
-            <div class="col-md-4 col-md-offset-4 text-center">
-                <a class="btn btn-accent btn-small" data-toggle="modal" data-target="#dc-modal">
-                    <i class="fa fa-barcode"></i>&nbsp;&nbsp;Dress code
-                </a>
             </div>
         </div>
         <!--<div class="row">
@@ -197,19 +237,6 @@
             </div>
         </div>-->
     </div>
-
-    <div id="dc-modal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span>
-                    </button>
-                    <h3 class="text-center section-padding">Ugh... dress codes?</h3>
-                    <p>Dress code details will be shared soon.</p>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
 
 </section>
 
@@ -336,16 +363,6 @@
     </div>-->
 </section>
 
-<section id="video-bg" class="wedding-page" data-page-label="Surat">
-    <div id="bgndVideo" class="player"
-         data-property="{videoURL:'https://youtu.be/9giqL1H6yRs',containment:'#video-bg',autoPlay:true, mute:true, showControls:false, startAt:80, stopAt:259, opacity:1}">
-    </div>
-    <div id="video-content">
-        <h5>Surat</h5>
-        <p>City of Diamonds</p>
-    </div>
-</section>
-
 <section id="map" class="section-padding wedding-page" data-page-label="Venue">
     <div class="text-center">
         <h3>How do I get there?</h3>
@@ -396,11 +413,20 @@
 </footer>
 </section>
 </main>
+<div class="falling-petals" aria-hidden="true"></div>
+<div class="music-player" role="group" aria-label="Wedding music controls">
+    <audio id="wedding-audio" src="audio/wedding_song.mp3" preload="auto" loop></audio>
+    <button class="music-mute-button" id="music-mute" type="button" aria-label="Mute wedding music"
+            aria-pressed="false">
+        <i class="fa fa-volume-up" aria-hidden="true"></i><span>Mute</span>
+    </button>
+    <span class="sr-only" id="music-status" aria-live="polite"></span>
+</div>
 <nav class="page-controls" aria-label="Section pages">
     <button class="page-control page-control-back" id="page-back" type="button" aria-label="Previous page">
         <i class="fa fa-angle-left" aria-hidden="true"></i><span>Back</span>
     </button>
-    <p class="page-indicator" id="page-indicator" aria-live="polite">Page 1 of 8</p>
+    <p class="page-indicator" id="page-indicator" aria-live="polite">Page 1 of 7</p>
     <button class="page-control page-control-next" id="page-next" type="button" aria-label="Next page">
         <span>Next</span><i class="fa fa-angle-right" aria-hidden="true"></i>
     </button>
@@ -410,9 +436,8 @@
 <script src="js/jquery.fancybox.pack.js"></script>
 <script src="js/vendor/bootstrap.min.js"></script>
 <script src="js/jquery.flexslider-min.js"></script>
-<script src="js/jquery.mb.YTPlayer.min.js"></script>
-<script src="js/scripts.js?v=3"></script>
-<script src="js/section-stepper.js"></script>
+<script src="js/scripts.js?v=7"></script>
+<script src="js/section-stepper.js?v=2"></script>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlPw3GQYI3faa_9mRE6plWuM7xNEmrwH0&callback=initMap"></script>
 <!-- Google Analytics -->
