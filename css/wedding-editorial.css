@@ -589,8 +589,11 @@ input:focus-visible {
 
 #intro .our-pov-photo img {
     display: block;
+    aspect-ratio: 4 / 3;
+    height: auto;
     max-height: 65vh;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
     width: 100%;
 }
 
@@ -639,9 +642,11 @@ input:focus-visible {
     }
 
     #intro .our-pov-photo img {
-        height: 150px;
+        aspect-ratio: 4 / 3;
+        height: auto;
         max-height: none;
-        object-position: center 45%;
+        object-fit: contain;
+        object-position: center;
     }
 
     #intro img {
@@ -972,21 +977,38 @@ section.events {
 footer {
     background: var(--wedding-burgundy);
     color: var(--wedding-ivory);
+    clear: both;
+    margin-top: 24px;
+    position: relative;
+    width: 100%;
+    z-index: 4;
     padding-top: 12px;
 }
 
 footer .content {
     border-top-color: rgba(146, 123, 0, 0.48);
+    border-top-style: solid;
+    border-top-width: 1px;
+    box-sizing: border-box;
+    padding: 18px 12px 10px;
 }
 
 footer .content p {
     color: #FFFFFF;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
 }
 
 footer .to-top-wrapper {
     background: var(--wedding-ivory);
     border-color: var(--wedding-gold);
     box-shadow: 0 8px 24px rgba(65, 72, 28, 0.2);
+    margin: -25px auto 16px;
+}
+
+#map-content-wrapper {
+    margin-bottom: 32px;
 }
 
 footer .to-top-wrapper .to-top {
@@ -1032,6 +1054,27 @@ footer span.fa-heart {
 
     #map-content {
         padding: 28px 22px;
+    }
+
+    #map-content-wrapper {
+        margin-bottom: 20px;
+    }
+
+    footer {
+        margin-top: 16px;
+        padding-top: 8px;
+    }
+
+    footer .content {
+        padding: 14px 10px 8px;
+    }
+
+    footer .content p {
+        font-size: 13px;
+    }
+
+    footer .to-top-wrapper {
+        margin-bottom: 12px;
     }
 
 }
