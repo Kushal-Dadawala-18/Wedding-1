@@ -110,11 +110,11 @@ section.events,
 }
 
 .hero-photo {
-    filter: brightness(0.82);
+    filter: brightness(0.78) saturate(0.92);
     height: calc(100% - 24px);
     inset: 12px;
     object-fit: cover;
-    object-position: center 10%;
+    object-position: center 48%;
     pointer-events: none;
     position: absolute;
     width: calc(100% - 24px);
@@ -202,6 +202,79 @@ body.page-stepper-ready #wedding-pages > #welcome.hero.wedding-page .hero-conten
     z-index: 3;
 }
 
+.hero .hero-content .hero-kicker {
+    font-family: var(--wedding-sans);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    margin: 0 0 12px;
+    text-transform: uppercase;
+}
+
+.hero .hero-content .hero-countdown-label {
+    font-family: var(--wedding-serif);
+    font-size: 20px;
+    letter-spacing: 0.04em;
+    margin: 18px 0 12px;
+}
+
+.hero-countdown {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: clamp(7px, 1.4vw, 14px);
+    justify-content: center;
+    margin: 0 auto 18px;
+}
+
+.countdown-unit {
+    align-items: center;
+    backdrop-filter: blur(5px);
+    background: rgba(65, 72, 28, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    border-radius: 50%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    display: flex;
+    flex-direction: column;
+    height: clamp(72px, 7vw, 96px);
+    justify-content: center;
+    width: clamp(72px, 7vw, 96px);
+}
+
+.countdown-value {
+    color: #FFFFFF;
+    font-family: var(--wedding-serif);
+    font-size: clamp(25px, 3vw, 38px);
+    font-weight: 600;
+    line-height: 1;
+}
+
+.countdown-label {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: clamp(9px, 1vw, 12px);
+    letter-spacing: 0.08em;
+    margin-top: 7px;
+    text-transform: uppercase;
+}
+
+.hero-invitation-button {
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid var(--wedding-gold);
+    border-radius: 999px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+    color: var(--wedding-burgundy);
+    display: inline-flex;
+    font: 600 14px/1 var(--wedding-sans);
+    letter-spacing: 0.08em;
+    padding: 13px 22px;
+    text-transform: uppercase;
+}
+
+.hero-invitation-button:hover,
+.hero-invitation-button:focus {
+    background: var(--wedding-burgundy);
+    color: #FFFFFF;
+}
+
 .hero h1 {
     color: #FFFFFF;
     font-family: var(--wedding-script);
@@ -245,6 +318,14 @@ body.page-stepper-ready #wedding-pages > #welcome.hero.wedding-page .hero-conten
     .hero .hero-content p {
         font-size: 24px;
     }
+
+    .hero .hero-content .hero-kicker {
+        font-size: 12px;
+    }
+
+    .hero .hero-content .hero-countdown-label {
+        font-size: 17px;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -255,6 +336,19 @@ body.page-stepper-ready #wedding-pages > #welcome.hero.wedding-page .hero-conten
 
     .hero .hero-content p {
         font-size: 18px;
+    }
+
+    .countdown-unit {
+        height: 66px;
+        width: 66px;
+    }
+
+    .countdown-value {
+        font-size: 23px;
+    }
+
+    .countdown-label {
+        font-size: 8px;
     }
 }
 
@@ -508,7 +602,8 @@ input:focus-visible {
 
 @media screen and (max-width: 767px) {
     #intro {
-        padding: 120px 0 100px;
+        align-items: flex-start;
+        padding: 82px 0 84px;
     }
 
     #intro .our-pov-row {
@@ -517,6 +612,40 @@ input:focus-visible {
 
     #intro .our-pov-copy {
         min-height: 0;
+    }
+
+    #intro .our-pov-copy h3 {
+        font-size: 30px;
+        line-height: 1.08;
+        text-align: center;
+    }
+
+    #intro .our-pov-story {
+        margin-top: 12px;
+    }
+
+    #intro .our-pov-story p {
+        font-size: 13.5px;
+        line-height: 1.42;
+        margin-bottom: 9px;
+    }
+
+    #intro .our-pov-story .our-pov-ending {
+        font-size: 16px;
+    }
+
+    #intro .our-pov-photo {
+        margin-top: 12px;
+    }
+
+    #intro .our-pov-photo img {
+        height: 180px;
+        max-height: none;
+        object-position: center 45%;
+    }
+
+    #intro img {
+        border-radius: 90px 90px 8px 8px;
     }
 
 }
@@ -740,7 +869,7 @@ section.events {
     }
 
     .event-choices {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
     .event-choice {
@@ -995,20 +1124,19 @@ body.page-stepper-ready #wedding-pages > .wedding-page.is-active .wp9 {
 
 .page-controls {
     align-items: center;
-    background: rgba(255, 249, 240, 0.96);
-    border: 1px solid rgba(146, 123, 0, 0.55);
-    border-radius: 999px;
-    bottom: calc(18px + env(safe-area-inset-bottom));
-    box-shadow: 0 8px 26px rgba(65, 72, 28, 0.16);
+    background: transparent;
+    border: 0;
+    bottom: calc(14px + env(safe-area-inset-bottom));
+    box-shadow: none;
     display: none;
-    gap: 12px;
+    gap: 16px;
     justify-content: space-between;
     left: 50%;
-    max-width: 430px;
-    padding: 7px 10px;
+    max-width: 470px;
+    padding: 0;
     position: fixed;
     transform: translateX(-50%);
-    width: calc(100% - 32px);
+    width: calc(100% - 28px);
     z-index: 1030;
 }
 
@@ -1016,29 +1144,39 @@ body.page-stepper-ready .page-controls {
     display: flex;
 }
 
+.page-controls::before {
+    content: "";
+    flex: 1 1 auto;
+}
+
+.page-controls::after {
+    content: "";
+    flex: 1 1 auto;
+}
+
 .page-control {
     align-items: center;
-    background: var(--wedding-burgundy);
-    border: 1px solid var(--wedding-gold);
+    background: rgba(255, 249, 240, 0.94);
+    border: 1px solid rgba(146, 123, 0, 0.72);
     border-radius: 999px;
-    color: var(--wedding-ivory);
+    box-shadow: 0 6px 18px rgba(65, 72, 28, 0.16);
+    color: var(--wedding-burgundy);
     cursor: pointer;
     display: inline-flex;
     flex: 0 0 auto;
-    font: 500 13px/1 var(--wedding-sans);
-    gap: 8px;
+    height: 44px;
     justify-content: center;
-    min-height: 40px;
-    min-width: 88px;
-    padding: 0 14px;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0;
     transition: background-color 200ms ease, transform 200ms ease;
 }
 
 .page-control:hover:not(:disabled),
 .page-control:focus-visible:not(:disabled) {
-    background: var(--wedding-wine);
-    color: #fff;
-    transform: translateY(-1px);
+    background: var(--wedding-burgundy);
+    color: var(--wedding-ivory);
+    transform: translateY(-2px);
 }
 
 .page-control:disabled {
@@ -1085,12 +1223,17 @@ body.page-stepper-ready .page-controls {
 
 .page-indicator {
     color: var(--wedding-burgundy);
-    flex: 1 1 auto;
-    font-size: 12px;
+    flex: 0 0 auto;
+    font: 600 11px/1 var(--wedding-sans);
+    letter-spacing: 0.12em;
     line-height: 1.3;
     margin: 0;
     padding: 0;
     text-align: center;
+}
+
+body.on-welcome-page .page-controls {
+    display: none;
 }
 
 @keyframes wedding-page-enter {
@@ -1135,7 +1278,8 @@ body.page-stepper-ready .page-controls {
     }
 
     body.page-stepper-ready #wedding-pages > #intro.wedding-page.is-active {
-        padding: 120px 0 100px;
+        align-items: flex-start;
+        padding: 82px 0 84px;
     }
 
     body.page-stepper-ready #wedding-pages > .hero.wedding-page {
@@ -1143,16 +1287,17 @@ body.page-stepper-ready .page-controls {
     }
 
     .page-controls {
-        bottom: calc(12px + env(safe-area-inset-bottom));
-        gap: 6px;
-        padding: 6px;
+        bottom: calc(10px + env(safe-area-inset-bottom));
+        gap: 12px;
+        max-width: 250px;
+        width: calc(100% - 32px);
     }
 
     .page-control {
-        gap: 5px;
-        min-height: 38px;
-        min-width: 78px;
-        padding: 0 10px;
+        height: 42px;
+        min-height: 42px;
+        min-width: 42px;
+        padding: 0;
     }
 }
 

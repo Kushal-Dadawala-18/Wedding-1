@@ -28,6 +28,7 @@
 
         activeIndex = index;
         document.body.classList.toggle('falling-flowers-active', activeIndex > 0);
+        document.body.classList.toggle('on-welcome-page', activeIndex === 0);
         pages.forEach(function (page, pageIndex) {
             var isActive = pageIndex === activeIndex;
             page.classList.toggle('is-active', isActive);
@@ -40,7 +41,10 @@
 
         var activePage = pages[activeIndex];
         var pageName = activePage.getAttribute('data-page-label') || 'Section';
-        indicator.textContent = 'Page ' + (activeIndex + 1) + ' of ' + pages.length + ' · ' + pageName;
+        var currentNumber = String(activeIndex + 1).padStart(2, '0');
+        var totalNumber = String(pages.length).padStart(2, '0');
+        indicator.textContent = currentNumber + ' / ' + totalNumber;
+        indicator.setAttribute('aria-label', 'Page ' + (activeIndex + 1) + ' of ' + pages.length + ': ' + pageName);
         previousButton.disabled = activeIndex === 0;
         nextButton.disabled = activeIndex === pages.length - 1;
         navigation.classList.toggle('fixed', activeIndex !== 0);
@@ -113,6 +117,48 @@
             showPage(activeIndex - 1, true);
         }
     });
+
+    var pageSwipeStart = null;
+
+    document.addEventListener('touchstart', function (event) {
+        if (event.touches.length !== 1) {
+            pageSwipeStart = null;
+            return;
+        }
+
+        var target = event.target;
+        if (target.closest('.event-detail, .music-player, input, textarea, select, a, button')) {
+            pageSwipeStart = null;
+            return;
+        }
+
+        pageSwipeStart = {
+            x: event.touches[0].clientX,
+            y: event.touches[0].clientY
+        };
+    }, { passive: true });
+
+    document.addEventListener('touchend', function (event) {
+        if (!pageSwipeStart || event.changedTouches.length !== 1) {
+            pageSwipeStart = null;
+            return;
+        }
+
+        var touch = event.changedTouches[0];
+        var distanceX = touch.clientX - pageSwipeStart.x;
+        var distanceY = touch.clientY - pageSwipeStart.y;
+        pageSwipeStart = null;
+
+        if (Math.abs(distanceX) < 70 || Math.abs(distanceX) < Math.abs(distanceY) * 1.25) {
+            return;
+        }
+
+        if (distanceX < 0 && activeIndex < pages.length - 1) {
+            showPage(activeIndex + 1, true);
+        } else if (distanceX > 0 && activeIndex > 0) {
+            showPage(activeIndex - 1, true);
+        }
+    }, { passive: true });
 
     var initialIndex = indexFromHash();
     showPage(initialIndex === -1 ? 0 : initialIndex, false);

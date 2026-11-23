@@ -1,5 +1,35 @@
 $(document).ready(function () {
 
+    /***************** Wedding countdown ******************/
+
+    var countdownTarget = new Date('2027-01-24T19:00:00+05:30').getTime();
+    var countdownValues = {
+        days: document.getElementById('countdown-days'),
+        hours: document.getElementById('countdown-hours'),
+        minutes: document.getElementById('countdown-minutes'),
+        seconds: document.getElementById('countdown-seconds')
+    };
+
+    function updateWeddingCountdown() {
+        if (!countdownValues.days) {
+            return;
+        }
+
+        var remaining = Math.max(0, countdownTarget - Date.now());
+        var days = Math.floor(remaining / 86400000);
+        var hours = Math.floor((remaining % 86400000) / 3600000);
+        var minutes = Math.floor((remaining % 3600000) / 60000);
+        var seconds = Math.floor((remaining % 60000) / 1000);
+
+        countdownValues.days.textContent = String(days);
+        countdownValues.hours.textContent = String(hours).padStart(2, '0');
+        countdownValues.minutes.textContent = String(minutes).padStart(2, '0');
+        countdownValues.seconds.textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateWeddingCountdown();
+    window.setInterval(updateWeddingCountdown, 1000);
+
     /***************** Waypoints ******************/
 
     $('.wp1').waypoint(function () {

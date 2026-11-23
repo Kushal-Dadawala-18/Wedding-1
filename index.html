@@ -56,7 +56,7 @@
     <link rel="stylesheet" href="css/flexslider.css">
     <link rel="stylesheet" href="css/styles.min.css">
     <link rel="stylesheet" href="css/queries.css">
-    <link rel="stylesheet" href="css/wedding-editorial.css?v=21">
+    <link rel="stylesheet" href="css/wedding-editorial.css?v=26">
     <link rel="stylesheet" href="node_modules/animate.css/animate.min.css" onerror="loadCssFromCDN('animate.css')">
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" onerror="loadCssFromCDN('font-awesome.css')">
     <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
@@ -92,19 +92,38 @@
 
 <main id="wedding-pages">
 <section class="hero wedding-page is-active" id="welcome" data-page-label="Welcome">
-    <img class="hero-photo" src="img/hero-harsh-priyanshi.png" alt="" aria-hidden="true">
+    <img class="hero-photo" src="img/reference-prewed1.jpg?v=25" alt="" aria-hidden="true">
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="hero-content text-center">
+                    <p class="hero-kicker">We are getting married</p>
                     <h1>Harsh &amp; Priyanshi</h1>
-                    <p>Harsh &amp; Priyanshi are getting married!</p>
+                    <p class="hero-countdown-label">The wedding begins in</p>
+                    <div class="hero-countdown" id="wedding-countdown" aria-label="Countdown to the wedding">
+                        <div class="countdown-unit">
+                            <span class="countdown-value" id="countdown-days">0</span>
+                            <span class="countdown-label">Days</span>
+                        </div>
+                        <div class="countdown-unit">
+                            <span class="countdown-value" id="countdown-hours">0</span>
+                            <span class="countdown-label">Hours</span>
+                        </div>
+                        <div class="countdown-unit">
+                            <span class="countdown-value" id="countdown-minutes">0</span>
+                            <span class="countdown-label">Minutes</span>
+                        </div>
+                        <div class="countdown-unit">
+                            <span class="countdown-value" id="countdown-seconds">0</span>
+                            <span class="countdown-label">Seconds</span>
+                        </div>
+                    </div>
+                    <a class="hero-invitation-button" href="#invitation">View Invitation</a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="down-arrow floating-arrow"><a href="#invitation"><i class="fa fa-angle-down"></i></a></div>
 </section>
 
 <section id="invitation" class="section-padding wedding-page" data-page-label="Family Blessing">
@@ -185,6 +204,14 @@
                         <span class="event-choice-meta">24th January 2027 <span>9 AM onwards</span></span>
                     </span>
                 </button>
+                <button class="event-choice" id="event-choice-4" type="button" role="tab"
+                        aria-selected="false" aria-controls="event-panel-4" tabindex="-1">
+                    <span class="event-choice-number">04</span>
+                    <span class="event-choice-copy">
+                        <span class="event-choice-title">Wedding</span>
+                        <span class="event-choice-meta">24th January 2027 <span>7 PM onwards</span></span>
+                    </span>
+                </button>
             </div>
             <div class="event-detail">
                 <article class="event-panel is-active" id="event-panel-1" role="tabpanel"
@@ -211,12 +238,21 @@
                         seek blessings, embrace cherished traditions and pray for happiness, harmony and prosperity in
                         Harsh and Priyanshi's new journey together.</p>
                 </article>
+                <article class="event-panel" id="event-panel-4" role="tabpanel"
+                         aria-labelledby="event-choice-4" tabindex="0" hidden>
+                    <h4>Wedding</h4>
+                    <p class="event-panel-date">24th January 2027 <span>7 PM onwards</span></p>
+                    <p class="event-description">A celebration of love, laughter and the beginning of forever. Join us
+                        as Harsh and Priyanshi take their vows and embark on a beautiful journey of togetherness,
+                        surrounded by the love, blessings and joy of their family and friends. Let’s make this evening
+                        a memory to cherish forever!</p>
+                </article>
                 <div class="event-controls" role="group" aria-label="Event navigation">
                     <button class="event-control event-previous" type="button" aria-label="Previous event">
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                     </button>
                     <div class="event-pagination">
-                        <span class="event-count" aria-live="polite">01 / 03</span>
+                        <span class="event-count" aria-live="polite">01 / 04</span>
                         <div class="event-dots" role="group" aria-label="Choose an event">
                             <button class="event-dot is-active" type="button" aria-label="Show event 1"
                                     aria-controls="event-panel-1" aria-pressed="true"></button>
@@ -224,6 +260,8 @@
                                     aria-controls="event-panel-2" aria-pressed="false"></button>
                             <button class="event-dot" type="button" aria-label="Show event 3"
                                     aria-controls="event-panel-3" aria-pressed="false"></button>
+                            <button class="event-dot" type="button" aria-label="Show event 4"
+                                    aria-controls="event-panel-4" aria-pressed="false"></button>
                         </div>
                     </div>
                     <button class="event-control event-next" type="button" aria-label="Next event">
@@ -245,9 +283,7 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <h3>A picture is worth a thousand words!</h3>
-                <p>Help us capture the moment, tag your photos with the hashtag
-                    <a href="https://instagram.com/explore/tags/mitron/" target="_blank">#Mitron</a>
-                </p>
+                <p>Can't wait to make memories with all of you that Priyanshi and I will cherish forever! ❤️</p>
             </div>
         </div>
         <div class="row section-border wp7">
@@ -424,11 +460,11 @@
 </div>
 <nav class="page-controls" aria-label="Section pages">
     <button class="page-control page-control-back" id="page-back" type="button" aria-label="Previous page">
-        <i class="fa fa-angle-left" aria-hidden="true"></i><span>Back</span>
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
     </button>
-    <p class="page-indicator" id="page-indicator" aria-live="polite">Page 1 of 7</p>
+    <p class="page-indicator" id="page-indicator" aria-live="polite">01 / 07</p>
     <button class="page-control page-control-next" id="page-next" type="button" aria-label="Next page">
-        <span>Next</span><i class="fa fa-angle-right" aria-hidden="true"></i>
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
     </button>
 </nav>
 <script src="js/vendor/jquery-1.11.2.min.js" onerror="loadJsFromCDN('jquery.js')"></script>
@@ -436,8 +472,8 @@
 <script src="js/jquery.fancybox.pack.js"></script>
 <script src="js/vendor/bootstrap.min.js"></script>
 <script src="js/jquery.flexslider-min.js"></script>
-<script src="js/scripts.js?v=7"></script>
-<script src="js/section-stepper.js?v=2"></script>
+<script src="js/scripts.js?v=9"></script>
+<script src="js/section-stepper.js?v=3"></script>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlPw3GQYI3faa_9mRE6plWuM7xNEmrwH0&callback=initMap"></script>
 <!-- Google Analytics -->
