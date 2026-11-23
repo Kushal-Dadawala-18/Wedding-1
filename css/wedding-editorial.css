@@ -603,7 +603,7 @@ input:focus-visible {
 @media screen and (max-width: 767px) {
     #intro {
         align-items: flex-start;
-        padding: 82px 0 84px;
+        padding: 76px 0 70px;
     }
 
     #intro .our-pov-row {
@@ -615,31 +615,31 @@ input:focus-visible {
     }
 
     #intro .our-pov-copy h3 {
-        font-size: 30px;
+        font-size: 27px;
         line-height: 1.08;
         text-align: center;
     }
 
     #intro .our-pov-story {
-        margin-top: 12px;
+        margin-top: 9px;
     }
 
     #intro .our-pov-story p {
-        font-size: 13.5px;
-        line-height: 1.42;
-        margin-bottom: 9px;
+        font-size: 12.5px;
+        line-height: 1.34;
+        margin-bottom: 6px;
     }
 
     #intro .our-pov-story .our-pov-ending {
-        font-size: 16px;
+        font-size: 15px;
     }
 
     #intro .our-pov-photo {
-        margin-top: 12px;
+        margin-top: 8px;
     }
 
     #intro .our-pov-photo img {
-        height: 180px;
+        height: 150px;
         max-height: none;
         object-position: center 45%;
     }
@@ -870,6 +870,10 @@ section.events {
 
     .event-choices {
         grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    body.invitation-version .event-choices {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .event-choice {
